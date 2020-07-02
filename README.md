@@ -1,11 +1,11 @@
 # jojostands.github.io 
 
-Basicamente a pagina pretende mostrar varias stands voando cada vez que se adiciona uma nova, é mostrada ela e quem a usa logo abaixo na pagina 
+A pagina pretende mostrar varias stands que voam,quando uma é adiciona, se for uma diferente da ultima são mostrados seu nome e usuario. Obviamente é uma jojoreference
 
-## o que é jojo?
+## o que é jojo(lê-se jow jow)?
 
-JOJO é um anime chamado "jojo's bizarres adventures, que gira em torno basicamente de porrada entre personagens fortões,  basicamente gosto muito de seu design e historia excentricos
+JOJO é um anime chamado "jojo's bizarres adventures", que gira em torno de porrada entre personagens fortões,  basicamente gosto muito de seu design e historia excentricos
 
 ## o que é uma stand?
 
-Basicamente Stands são representações dos da "alma" do personagem, basicamente é o bagulho que da poderzinho pra lutar
+Stands são manifestações da "alma" dos personagens, basicamente é o bagulho que da poderzinho pra lutar
