@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOJO STANDS</title>
+    <style>
+        body {
+            background-image: url(imgs/fundo.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .moving {
+           position: absolute;
+           width: 3%;
+        }
+        .standInformation{
+            position: absolute;
+            top: 39em;
+            left: 10em;
+            display: inline-flex;
+            background-image: url("imgs/back.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .stand{
+            text-align: center;
+        }
+        .User{
+            text-align: center;
+            margin-left: 30px;
+        }
+        .standImage img{
+            width: 150px;
+            height: 222px;
+        }
+        .userImage img{
+            width: 150px;
+            height: 222px;
+        }
+
+        span{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="Stands">
+
+    </div>
+    <button id="novo">Novo Stand</button>
+    <button id="remove">Remover Stand</button>
+    <div class="standInformation">
+        <div class="stand">
+            <div></div>
+        <span class="standName">Star Platinum</span>
+        <div class="standImage">
+            <img src="imgs/Star_platinum.png">
+        </div>
+        <span>Stand</span>
+        </div>
+        <div class="User">
+            <span class="userName">Jotaro Kujo</span>
+            <div class="userImage">
+                <img src="imgs/Jotaro_1.png">
+            </div>
+            <span>Use</span>
+        </div>
+    </div>
+    <script>
+
+        let Stands = [{
+            "Nome": "Star Platinum",
+            "image": "imgs/Star_platinum.png",
+            "Stand_User": "Kujo Jotaro",
+            "User_image": "imgs/Jotaro_1.png",
+            "parte": "3 Stardust Cruzaders"
+        },{
+            "Nome": "The world",
+            "image": "imgs/The_world.png",
+            "Stand_User": "Dio Brando",
+            "User_image": "imgs/Dio_brando.png",
+            "parte": "3 Stardust Cruzaders"
+        },{
+            "Nome": "Hierophant Green",
+            "image": "imgs/Hierophant_Green.png",
+            "Stand_User": "Kakyoin",
+            "User_image": "imgs/Kakyoin.png",
+            "parte": "3 Stardust Cruzaders"
+        }]
+
+        class Stand {
+
+            constructor() {
+                this.x = 0;
+                this.y = 0;
+                this.movementYMultiplier = Math.round(Math.random() * 10)*10
+                console.log(this.movementYMultiplier)
+                this.baseY = Math.random() * 300 + 20;
+                this.velocidadeX = Math.random() * 2 + 2;
+                this.standPosition = Math.round (Math.random() * (Stands.length-1))
+                this.standObject = Stands[this.standPosition]
+                this.el = document.createElement('img');
+                this.el.classList.add('moving')
+                this.el.src = this.standObject.image;
+                this.el.alt = this.standObject.Nome;
+                this.el.addEventListener('mouseover',mostrarInf(this.standObject))
+            
+            
+                document.querySelector('#Stands').appendChild(this.el);
+            }
+
+            movimentar() {
+        
+                    this.x += this.velocidadeX;
+                    this.y = this.baseY + Math.sin(this.x /40)*this.movementYMultiplier ;
+                
+                if (this.x >= window.innerWidth) {
+                    this.x = 0;
+                    this.baseY = Math.random() * 300;
+                }
+
+                this.el.style.transform = `translate(${this.x}px, ${this.y}px)`;
+            }
+
+
+            clear() {
+                this.el.style.display = "none";
+            }
+
+        }
+
+        let Standss = [new Stand(), new Stand(), new Stand()];
+
+        setInterval(() => {
+            for (let i = 0; i < Standss.length; i++) {
+                Standss[i].movimentar();
+            }
+        }, 33);
+        let novoEl = document.querySelector('#novo');
+        novoEl.addEventListener('click', () => {
+            Standss.push(new Stand());
+        });
+       
+       let remove = document.querySelector('#remove');
+       remove.addEventListener('click', () =>{
+            Standss[0].clear();
+            Standss.splice(0,1);
+       })
+       function mostrarInf(stand){
+                let standBox = document.querySelector(".stand")
+                standBox.children[1].innerHTML = stand.Nome;
+                standBox.children[2].children[0].src = stand.image;
+                let UserBox = document.querySelector(".User")
+                console.log(UserBox.children)
+                UserBox.children[0].innerHTML = stand.Stand_User;
+                UserBox.children[1].children[0].src = stand.User_image;
+            }
+    </script>
+</body>
+</html>
